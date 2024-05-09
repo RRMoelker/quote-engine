@@ -8,8 +8,9 @@ The goal is to:
 
 To that end here are some of the sub goals/tasks:
 
-* [] Setup Django
+* [x] Setup Django
 * [] Setup basic rest endpoint
+* [] Automated tests
 * [] Create client side app
 * [] Create AI endpoint
 
@@ -17,11 +18,4 @@ To that end here are some of the sub goals/tasks:
 
 * All commands in the documentation should run on any unix system and are tested on mac OS.
 * Using the latest Python version because there are no library or organisational dependencies holding it back.
-* Using Poetry for package management to easily pin versions
-
-# Log
-
-* `django-admin startproject webservice .`
-* `poetry init --name quote-web-service`
-* Setup virtualenv `virtualenv -p $(pyenv which python3) .venv`
-* Installed latest python 3.12.1
+* Note that webservice specific designs live in `webservice/README.md`.
