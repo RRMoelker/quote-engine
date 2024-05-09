@@ -1,5 +1,6 @@
 Simple example webservice and web app for showing quotes.  
 
+
 # Web service design decisions
 
 * Using Poetry for package management to easily pin versions
@@ -54,6 +55,7 @@ To see all available endpoints use:
 
     python manage.py show_urls
 
+
 # Test
 
     python manage.py test
@@ -61,6 +63,7 @@ To see all available endpoints use:
 or 
 
     poetry run test
+
 
 # Log
 

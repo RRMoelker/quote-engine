@@ -1,3 +1,13 @@
+<script setup lang="ts">
+import IconClose from '@/components/icons/IconClose.vue'
+
+const emit = defineEmits(['remove'])
+
+function removeItem() {
+  emit('remove')
+}
+</script>
+
 <template>
   <div class="item">
     <i>
@@ -9,6 +19,7 @@
       </h3>
       <slot></slot>
     </div>
+    <button @click="removeItem"><IconClose /></button>
   </div>
 </template>
 
@@ -22,6 +33,22 @@
 .details {
   flex: 1;
   margin-left: 1rem;
+}
+
+button {
+  /* Unstyle button*/
+  border: none;
+  padding: 0;
+  margin: 0;
+  width: 3rem;
+  height: 3rem;
+  color: inherit;
+  border-radius: 8px;
+  background-color: var(--accent-1--a);
+}
+
+button:hover {
+  background-color: var(--accent-1--b);
 }
 
 i {

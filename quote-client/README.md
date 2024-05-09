@@ -1,20 +1,39 @@
 Example VueJS web application to fetch random quotes from related quote web server.
 
+
 # Design decisions
 
+* The focus of this project is on the backend so the webapp is very simple:
+no CSS library/framework, no fancy state management, no routing, etc. 
 * Started with general VueJS app by running create and using TypeScript, linting and E2E testing.
+* Slightly modified HelloWorld example to show list of quotes
+
 
 # Install
 
     npm install
 
+
 # Run
 
-Start the dev server and open [localhost:5173](http://localhost:5173/)
+Start the dev server and open [localhost:5173](http://localhost:5173/):
 
     npm run dev
 
-# Linting & testing
+
+# Testing
+
+Run unit tests:
+
+    npm run test:unit
+
+Run Cypress E2E tests by starting Cypress with:
+
+    npm run test:e2e:dev
+
+And selecting specs to test in the UI.
+
+# Linting
 
 Type checking:
 
@@ -27,10 +46,6 @@ Pretty formatting:
 Linting:
 
     npm run lint
-
-Run cypress E2E test
-
-    npm run test:e2e:dev
 
 
 

@@ -1,19 +1,35 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import AppTitle from './components/AppTitle.vue'
+import QuoteList from './components/QuoteList.vue'
+import { ref } from 'vue'
+import { Quote } from '@/types'
+
+let id = 0
+const quotes = ref<Quote[]>([
+  { id: id++, content: 'abc', author: 'asdf' },
+  { id: id++, content: 'xdf', author: 'asdf' },
+  { id: id++, content: 'asdfds', author: 'asdf' }
+])
+
+function getQuote() {
+  console.log('getting quote')
+}
+function onChildRemove(id: number) {
+  console.log(id)
+  quotes.value = quotes.value.filter((q) => q.id !== id)
+}
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+      <AppTitle msg="The quote fetcher" />
+      <button @click="getQuote">Get new quote</button>
     </div>
   </header>
 
   <main>
-    <TheWelcome />
+    <QuoteList :quotes="quotes" @removeItem="onChildRemove" />
   </main>
 </template>
 
@@ -22,9 +38,28 @@ header {
   line-height: 1.5;
 }
 
-.logo {
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+button {
   display: block;
-  margin: 0 auto 2rem;
+  font-size: 1.2rem;
+  margin: 2rem 0;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  background-color: var(--accent-1--a);
+}
+
+button:hover {
+  background-color: var(--accent-1--b);
+}
+
+button:active {
+  background-color: var(--accent-1--c);
 }
 
 @media (min-width: 1024px) {
@@ -32,16 +67,6 @@ header {
     display: flex;
     place-items: center;
     padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
   }
 }
 </style>
