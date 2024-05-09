@@ -12,3 +12,8 @@ While Poetry should pick it up automatically it is advisable to source the envir
 
     source .venv/bin/activate
 
+## Run
+
+To start the development service on [localhost:8000](http://127.0.0.1:8000) run:
+
+    python manage.py runserver
