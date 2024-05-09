@@ -8,7 +8,7 @@ Simple example webservice and web app for showing quotes.
 
 # Install
 
-## Virtualenv
+## Virtualenv [optional]
 A virtualenv is not required but is a great benefit when working on more than one python project.
 You need to set up a new virtualenv once using:
 
@@ -17,6 +17,19 @@ You need to set up a new virtualenv once using:
 While Poetry should pick it up automatically it is advisable to source the environment every CLI session:
 
     source .venv/bin/activate
+
+## Init DB
+
+To initialize the DB run:
+
+    python manage.my migrate
+
+## Admin superuser [optional]
+
+To create a user that can access the admin pages and has all authorizations: 
+
+    python manage.py createsuperuser
+
 
 # Run
 
@@ -30,6 +43,9 @@ Or better yet use poetry
 
 # Log
 
+
+* Rest framework endpoint `/api` init 
+* `python manage.py startapp client`
 * `python manage.py migrate`
 * `django-admin startproject webservice .`
 * `poetry init --name quote-web-service`
