@@ -6,9 +6,7 @@ import { Quote } from '@/types'
 
 let id = 0
 const quotes = ref<Quote[]>([
-  { id: id++, content: 'abc', author: 'asdf' },
-  { id: id++, content: 'xdf', author: 'asdf' },
-  { id: id++, content: 'asdfds', author: 'asdf' }
+  { id: id++, content: 'When in doubt, push the button. It\'s amazing how many things can be solved by just taking action', author: 'Attributed to Robert H. Schuller, actually hallucinated by GPT 3.5' },
 ])
 
 function getQuote() {

@@ -15,9 +15,9 @@ function removeItem() {
     </i>
     <div class="details">
       <h3>
-        <slot name="heading"></slot>
+        <slot></slot>
       </h3>
-      <slot></slot>
+      <slot name="heading"></slot>
     </div>
     <button @click="removeItem"><IconClose /></button>
   </div>
