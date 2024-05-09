@@ -14,6 +14,10 @@ While Poetry should pick it up automatically it is advisable to source the envir
 
 ## Run
 
-To start the development service on [localhost:8000](http://127.0.0.1:8000) run:
+To start the development service on [localhost:8000](http://127.0.0.1:8080) run:
 
-    python manage.py runserver
+    python manage.py runserver 8080
+
+Or better yet use poetry
+
+    poetry run start

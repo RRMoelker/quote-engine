@@ -1,10 +1,9 @@
 [tool.poetry]
-name = "quote-web-service"
+name = "webservice"
 version = "0.1.0"
 description = "Simple example webservice for fetching quotes"
 authors = ["Ruurd Moelker"]
 readme = "README.md"
-packages = [{include = "quote_web_service"}]
 
 [tool.poetry.dependencies]
 python = "3.12.1"
@@ -15,3 +14,11 @@ djangorestframework = "^3.15.1"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "webservice.settings"
+
+
+[tool.poetry.scripts]
+start = "scripts:run_server"
