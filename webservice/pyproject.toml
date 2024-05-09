@@ -12,7 +12,12 @@ djangorestframework = "^3.15.1"
 Markdown = "^3.6"
 djangorestframework-yaml = "^2.0.0"
 djangorestframework-xml = "^2.0.0"
+requests = "^2.31.0"
+django-extensions = "^3.2.3"
 
+
+[tool.poetry.group.dev.dependencies]
+django-extensions = "^3.2.3"
 
 [build-system]
 requires = ["poetry-core"]
@@ -25,3 +30,4 @@ DJANGO_SETTINGS_MODULE = "webservice.settings"
 
 [tool.poetry.scripts]
 start = "scripts:run_server"
+test = "scripts:test"

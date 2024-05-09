@@ -8,7 +8,11 @@ Simple example webservice and web app for showing quotes.
 * Leaving user management API endpoints from rest framework getting started to illustrate the DB to browsable API features for possible future use. 
 The quote example by itself does not quite justify the use of the library when a simple view endpoint would suffice.
 * The random quote endpoint uses a GET endpoint for simplicity of use. 
-Do note that POST would be a more correct usage in a RESTFull API context.  
+Do note that POST would be a more correct usage in a RESTFull API context.
+* Using [DRF client](https://www.django-rest-framework.org/api-guide/testing/#apiclient) request tooling to cast a wider net with the TEST and reduce implementation dependency.
+The drawback is that it is a bit more fragile that using a [RequestFactory](https://www.django-rest-framework.org/api-guide/testing/#apirequestfactory).
+* The XML endpoint test parses XML from a random quote.
+That might expose it to [malicious XML data](https://docs.python.org/3/library/xml.etree.elementtree.html) to which no protection is in place for this example.
 
 # Install
 
@@ -44,6 +48,18 @@ To start the development service on [localhost:8000](http://127.0.0.1:8080) run:
 Or better yet use poetry
 
     poetry run start
+
+To see all available endpoints use:
+
+    python manage.py show_urls
+
+# Test
+
+    python manage.py test
+
+or 
+
+    poetry run test
 
 # Log
 

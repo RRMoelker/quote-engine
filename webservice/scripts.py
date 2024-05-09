@@ -20,3 +20,6 @@ def run_server():
     """Run Django dev server for local development"""
     _execute("manage.py", "runserver", "8080")
 
+
+def test():
+    _execute("manage.py", "test")

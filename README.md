@@ -9,9 +9,9 @@ The goal is to:
 To that end here are some of the sub goals/tasks:
 
 * [x] Setup Django
-* [] Setup basic rest endpoint
-* [] Add XML
-* [] Automated tests
+* [x] Setup basic rest endpoint
+* [x] Add XML
+* [x] Basic automated tests
 * [] Create client side app
 * [] Create AI endpoint
 * [] Linting, etc

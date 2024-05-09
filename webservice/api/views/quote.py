@@ -6,7 +6,7 @@ from rest_framework.response import Response
 @permission_classes((permissions.AllowAny,))
 class QuoteViewSet(viewsets.ViewSet):
     def list(self, request):
-        quotes = ['Not implemented']
+        quotes = ['List view not implemented, try the Extra actions dropdown ^']
         return Response(quotes)
 
     def retrieve(self, request, pk=None):
