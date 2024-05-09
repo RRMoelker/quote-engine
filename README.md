@@ -14,8 +14,10 @@ To that end here are some of the sub goals/tasks:
 * [x] Basic automated tests
 * [x] Actually fetch remote quotes
 * [] Create client side app
+* [] Client Linting, etc
 * [] Create AI endpoint
-* [] Linting, etc
+* [] Server Linting, etc
+* [] CI on github
 
 # Design decisions
 
