@@ -14,6 +14,7 @@ The drawback is that it is a bit more fragile that using a [RequestFactory](http
 * The XML endpoint test parses XML from a random quote.
 That might expose it to [malicious XML data](https://docs.python.org/3/library/xml.etree.elementtree.html) to which no protection is in place for this example.
 
+
 # Install
 
 ## Virtualenv [optional]

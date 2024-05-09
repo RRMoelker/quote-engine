@@ -12,6 +12,7 @@ To that end here are some of the sub goals/tasks:
 * [x] Setup basic rest endpoint
 * [x] Add XML
 * [x] Basic automated tests
+* [x] Actually fetch remote quotes
 * [] Create client side app
 * [] Create AI endpoint
 * [] Linting, etc
