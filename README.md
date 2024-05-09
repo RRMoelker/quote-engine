@@ -10,9 +10,11 @@ To that end here are some of the sub goals/tasks:
 
 * [x] Setup Django
 * [] Setup basic rest endpoint
+* [] Add XML
 * [] Automated tests
 * [] Create client side app
 * [] Create AI endpoint
+* [] Linting, etc
 
 # Design decisions
 

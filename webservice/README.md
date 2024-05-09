@@ -5,6 +5,10 @@ Simple example webservice and web app for showing quotes.
 * Using Poetry for package management to easily pin versions
 * Using Django REST framework because it is the standard for REST endpoints and supports both XML and JSON out of the box.
 * Sticking to SQLite Django DB because this example setup does not require anything more.
+* Leaving user and group API endpoints from rest framework getting started to illustrate what the library has to offer when expanding. 
+The quote example by itself does not quite justify the use of the library when a simple view endpoint would suffice.
+* The random quote endpoint uses a GET endpoint for simplicity of use. 
+Do note that POST would be a more correct usage in a RESTFull API context.  
 
 # Install
 
@@ -43,7 +47,8 @@ Or better yet use poetry
 
 # Log
 
-
+* Added `http://localhost:8080/api/quotes/random_quote/`
+* `django-admin startapp api`
 * Rest framework endpoint `/api` init 
 * `python manage.py startapp client`
 * `python manage.py migrate`
