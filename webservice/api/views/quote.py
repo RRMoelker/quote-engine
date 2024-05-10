@@ -1,3 +1,6 @@
+import json
+import requests
+from django.conf import settings
 from rest_framework import viewsets, permissions
 from rest_framework.decorators import action, permission_classes
 from rest_framework.response import Response
@@ -14,11 +17,21 @@ class QuoteViewSet(viewsets.ViewSet):
 
     @action(detail=False, methods=['get'])
     def random_quote(self, request):
-        import random
-        quotes = [
-            "The only limit to our realization of tomorrow will be our doubts of today.",
-            "The best way to predict the future is to invent it.",
-            "Success is not the key to happiness. Happiness is the key to success.",
-        ]
-        random_quote = random.choice(quotes)
-        return Response({'quote': random_quote})
+        remote_endpoint = settings.QUOTE_ENDPOINT
+        try:
+            response = requests.get(remote_endpoint)
+
+            if response.status_code == 200:
+                data = json.loads(response.content)
+                return Response({
+                    'quote': data['content'],
+                    'author': data['author'],
+                })
+            else:
+                # Request was unsuccessful, raise an exception with status code
+                raise requests.HTTPError(f"HTTP GET request failed with status code: {response.status_code}")
+
+        except requests.RequestException as e:
+            # Handle all requests-related exceptions (e.g., connection error, timeout)
+            print(f"An error occurred during the HTTP request: {e}")
+            raise  # Re-raise the exception for higher-level handling
