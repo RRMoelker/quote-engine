@@ -1,6 +1,9 @@
 name: Vue.js CI
 
-on: [push, pull_request]
+on:
+  push:
+    paths:
+      - 'quote-client/**'
 
 defaults:
   run:
