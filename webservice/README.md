@@ -66,6 +66,7 @@ or
 
 # Log
 
+* Poetry python version relaxed because github runners do not have quite the same version.
 * Added `http://localhost:8080/api/quotes/random_quote/`
 * `django-admin startapp api`
 * Rest framework endpoint `/api` init 
