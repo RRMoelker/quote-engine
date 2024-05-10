@@ -13,23 +13,25 @@ defaults:
 jobs:
   test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [ 3.12 ]
 
     steps:
       - uses: actions/checkout@v2
 
-      - name: Set up Python ${{ matrix.python-version }}
+      - name: Set up Python and Poetry
         uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: '3.12'
 
-      - name: Install dependencies
+      - name: Install Poetry
+        run: |
+          curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+          source $HOME/.poetry/env
+
+      - name: Install dependencies with Poetry
         run: poetry install
 
       - name: Run Django migrations
-        run: python manage.py migrate
+        run: poetry run python manage.py migrate
 
       - name: Run Django tests
-        run: python manage.py test
+        run: poetry run python manage.py test
