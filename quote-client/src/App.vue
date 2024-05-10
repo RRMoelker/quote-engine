@@ -2,7 +2,7 @@
 import AppTitle from './components/AppTitle.vue'
 import QuoteList from './components/QuoteList.vue'
 import { ref } from 'vue'
-import { QuoteType } from '@/types'
+import type { QuoteType } from '@/types'
 import { fetchQuote, getInitialQuotes } from '@/api/fetcher'
 
 const quotes = ref<QuoteType[]>(getInitialQuotes())
@@ -12,8 +12,8 @@ const getQuote = async () => {
   try {
     const quote: QuoteType = await fetchQuote()
     quotes.value.push(quote)
-  } catch (error) {
-    errorMessage.value = error
+  } catch (error: any) {
+    errorMessage.value = error;
   }
 }
 const onChildRemove = (id: number) => {
