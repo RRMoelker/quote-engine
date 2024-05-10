@@ -36,19 +36,22 @@ function removeItem() {
 }
 
 button {
-  /* Unstyle button*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: none;
   padding: 0;
   margin: 0;
-  width: 3rem;
-  height: 3rem;
+  margin-left: calc(var(--section-gap) / 8);
+  width: 2rem;
+  height: 2rem;
   color: inherit;
   border-radius: 8px;
-  background-color: var(--accent-1--a);
+  background-color: var(--gray-1--a);
 }
 
 button:hover {
-  background-color: var(--accent-1--b);
+  background-color: var(--gray-1--b);
 }
 
 i {

@@ -11,6 +11,12 @@ no CSS library/framework, no fancy state management, no routing, etc.
 
 # Install
 
+Copy the example env:
+
+    cp .env.example .env
+
+Install npm dependencies
+
     npm install
 
 

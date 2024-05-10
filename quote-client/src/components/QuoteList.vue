@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import QuoteItem from './QuoteItem.vue'
 import DocumentationIcon from './icons/IconDocumentation.vue'
-import { Quote } from '@/types'
+import { QuoteType } from '@/types'
 
 const emit = defineEmits(['removeItem'])
 defineProps<{
-  quotes: Quote[]
+  quotes: QuoteType[]
 }>()
 </script>
 

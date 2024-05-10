@@ -2,18 +2,21 @@
 import AppTitle from './components/AppTitle.vue'
 import QuoteList from './components/QuoteList.vue'
 import { ref } from 'vue'
-import { Quote } from '@/types'
+import { QuoteType } from '@/types'
+import { fetchQuote, getInitialQuotes } from '@/api/fetcher'
 
-let id = 0
-const quotes = ref<Quote[]>([
-  { id: id++, content: 'When in doubt, push the button. It\'s amazing how many things can be solved by just taking action', author: 'Attributed to Robert H. Schuller, actually hallucinated by GPT 3.5' },
-])
+const quotes = ref<QuoteType[]>(getInitialQuotes())
+const errorMessage = ref<string>('')
 
-function getQuote() {
-  console.log('getting quote')
+const getQuote = async () => {
+  try {
+    const quote: QuoteType = await fetchQuote()
+    quotes.value.push(quote)
+  } catch (error) {
+    errorMessage.value = error
+  }
 }
-function onChildRemove(id: number) {
-  console.log(id)
+const onChildRemove = (id: number) => {
   quotes.value = quotes.value.filter((q) => q.id !== id)
 }
 </script>
@@ -23,6 +26,7 @@ function onChildRemove(id: number) {
     <div class="wrapper">
       <AppTitle msg="The quote fetcher" />
       <button @click="getQuote">Get new quote</button>
+      <p>{{ errorMessage }}</p>
     </div>
   </header>
 

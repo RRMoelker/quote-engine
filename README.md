@@ -14,9 +14,10 @@ To that end here are some of the sub goals/tasks:
 * [x] Basic automated tests
 * [x] Actually fetch remote quotes
 * [] Create client side app
-* [] Client Linting, etc
+* [x] Client Linting, etc
 * [] Create AI endpoint
 * [] Server Linting, etc
+* [] Serve client app through Django
 * [] CI on github
 
 
