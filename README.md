@@ -10,7 +10,7 @@ Possible improvements:
 
 * [] Create AI endpoint
 * [] Server Linting, etc
-* [] CI on github
+* [x] CI on github
 * [] Serve client app through Django
 * [] Deploy and CD
 
