@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'quote-client/**'
+      - '.github/workflows/vuejs.yml'
 
 defaults:
   run:

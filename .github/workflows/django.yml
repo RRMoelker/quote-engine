@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'webservice/**'
+      - '.github/workflows/django.yml'
 
 defaults:
   run:
