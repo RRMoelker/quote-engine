@@ -6,19 +6,13 @@ The goal is to:
 * Refresh some library knowledge for Django REST framework and VueJS.
 * Deploy a simple custom cloud based AI solution
 
-To that end here are some of the sub goals/tasks:
+Possible improvements:
 
-* [x] Setup Django
-* [x] Setup basic rest endpoint
-* [x] Add XML
-* [x] Basic automated tests
-* [x] Actually fetch remote quotes
-* [] Create client side app
-* [x] Client Linting, etc
 * [] Create AI endpoint
 * [] Server Linting, etc
-* [] Serve client app through Django
 * [] CI on github
+* [] Serve client app through Django
+* [] Deploy and CD
 
 
 # Structure 
