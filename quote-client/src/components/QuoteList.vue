@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import QuoteItem from './QuoteItem.vue'
 import DocumentationIcon from './icons/IconDocumentation.vue'
-import { QuoteType } from '@/types'
+import type { QuoteType } from '@/types'
 
 const emit = defineEmits(['removeItem'])
 defineProps<{

@@ -1,0 +1,37 @@
+name: Django CI
+
+on:
+  push:
+    paths:
+      - 'webservice/**'
+      - '.github/workflows/django.yml'
+
+defaults:
+  run:
+    working-directory: webservice
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Run image
+        uses: abatilo/actions-poetry@v2
+        with:
+          poetry-version: '1.7.1'
+
+      - name: Install dependencies with Poetry
+        run: poetry install
+
+      - name: Run Django migrations
+        run: poetry run python manage.py migrate
+
+      - name: Run Django tests
+        run: poetry run python manage.py test

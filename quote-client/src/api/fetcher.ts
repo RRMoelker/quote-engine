@@ -1,4 +1,4 @@
-import { type QuoteType } from '@/types' // TODO: Solve build problem, Vite apparently has an issue with TypeScript outside .vue files, see: https://stackoverflow.com/a/69058599
+import type { QuoteType } from '@/types'
 
 type RemoteQuote = {
   quote: string
