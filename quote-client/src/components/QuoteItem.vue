@@ -47,7 +47,7 @@ button {
   height: 2rem;
   color: inherit;
   border-radius: 8px;
-  background-color: var(--gray-1--a);
+  border: 1px solid var(--color-border);
 }
 
 button:hover {
