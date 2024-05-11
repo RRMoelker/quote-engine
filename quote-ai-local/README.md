@@ -10,6 +10,16 @@ The service packages requests and forwards them to a LM studio server (started i
 
 # Install
 
+This service requires LM studio with a specific model downloaded.
+
+Download [LM studio from here](https://lmstudio.ai/).
+
+Download the `"lmstudio-community/Meta-Llama-3-8B-Instruct-GGUF"` through the UI.
+
+And initialize the `lms` service used by the [LM Studio SDK by following this guide](https://lmstudio.ai/docs/lmstudio-sdk/quick-start).
+
+To install the dependencies of this Node service itself run
+
     npm install
 
 # Run

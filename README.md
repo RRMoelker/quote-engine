@@ -26,7 +26,14 @@ The project consists of:
 
 1. A Django web server that fetches quotes
 2. A VueJS web app to fetch quotes without reloads
+3. A NodeJS service that paraphrases quotes based on a supplied character though LM studio server
 
+# Install & run
+
+The frontend and Django backend are easily started for a developer that has python and node installed.
+The AI NodeJS backend requires LM studio, which requires some extra work.
+
+Please look at the individual README.md files how to start those parts of the system.
 
 # Design decisions
 
