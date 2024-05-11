@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import AppTitle from './components/AppTitle.vue'
 import QuoteList from './components/QuoteList.vue'
-import { ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import type { QuoteType } from '@/types'
 import { fetchQuote } from '@/api/fetcher'
 import { transformQuote } from '@/api/transformer'
 import { getInitialQuotes } from '@/api/quotes'
-import { characters } from '@/api/characters'
+import useCharactersApi from '@/api/characters'
 
+const { characters, loading: charLoading, error: charError, fetchCharacters } = useCharactersApi()
 const selectedCharacter = ref('')
 const quotes = ref<QuoteType[]>(getInitialQuotes())
 const errorMessage = ref<string>('')
@@ -43,6 +44,13 @@ const handleSubmit = async () => {
   }
   quotes.value.push(quote)
 }
+
+onMounted(() => {
+  fetchCharacters()
+})
+watch(characters, () => {
+  console.log(characters)
+})
 </script>
 
 <template>
@@ -52,16 +60,20 @@ const handleSubmit = async () => {
       <button @click="getQuote" :class="{ primary: quotes.length === 0 }">Get new quote</button>
       <form v-if="quotes.length > 0" @submit.prevent="handleSubmit">
         <h2>Who should say it differently?</h2>
-        <select v-model="selectedCharacter">
-          <option disabled value="">Select a character</option>
-          <option v-for="character in characters" :key="character">{{ character }}</option>
-        </select>
-        <button
-          :disabled="selectedCharacter.length === 0"
-          :class="{ primary: selectedCharacter.length > 0 }"
-        >
-          Rephrase it
-        </button>
+        <div v-if="charLoading">Loading characters...</div>
+        <div v-else-if="charError">Could not load characters: {{ charError }}</div>
+        <div v-else>
+          <select v-model="selectedCharacter">
+            <option disabled value="">Select a character</option>
+            <option v-for="character in characters" :key="character">{{ character }}</option>
+          </select>
+          <button
+            :disabled="selectedCharacter.length === 0"
+            :class="{ primary: selectedCharacter.length > 0 }"
+          >
+            Rephrase it
+          </button>
+        </div>
       </form>
       <p>{{ errorMessage }}</p>
     </div>
