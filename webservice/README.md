@@ -66,6 +66,7 @@ or
 
 # Log
 
+* Characters model, initial migration, admin site and data migration added `python manage.py makemigrations --empty --name initial_characters api`
 * Poetry python version relaxed because github runners do not have quite the same version.
 * Added `http://localhost:8080/api/quotes/random_quote/`
 * `django-admin startapp api`

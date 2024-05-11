@@ -14,10 +14,11 @@ Possible improvements:
 * [] Server Linting, etc
 * [x] CI on github
 * [] Serve client app through Django
-* [] Get characters from Django BE
+* [x] Get characters from Django BE
 * [] Deploy and CD
 * [] quote-ai-local: Lint, test, CI 
 * [] Proper logging instead of `print` and `console` statements
+* [] All client fetch calls use something akin to `useApi` with loading and error states integrated
 
 
 # Structure 
