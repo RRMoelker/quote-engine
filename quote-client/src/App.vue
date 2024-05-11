@@ -1,37 +1,66 @@
 <script setup lang="ts">
 import AppTitle from './components/AppTitle.vue'
 import QuoteList from './components/QuoteList.vue'
-import { ref } from 'vue'
-import type { QuoteType } from '@/types'
-import { fetchQuote, getInitialQuotes } from '@/api/fetcher'
+import {ref} from 'vue'
+import type {QuoteType} from '@/types'
+import {fetchQuote, getInitialQuotes} from '@/api/fetcher'
 
+const characters = [
+  'Yoda (Star Wars)',
+  'Donald Trump',
+  'Gollum (The Lord of the Rings)',
+  'Hodor (Game of Thrones)',
+  'Minions (Despicable Me)',
+  'Tarzan',
+]
+
+const selectedCharacter = ref('')
 const quotes = ref<QuoteType[]>(getInitialQuotes())
 const errorMessage = ref<string>('')
 
 const getQuote = async () => {
   try {
     const quote: QuoteType = await fetchQuote()
-    quotes.value.push(quote)
+    quotes.value[0] = quote
+    quotes.value.length = 1
   } catch (error: any) {
-    errorMessage.value = error;
+    errorMessage.value = error
   }
 }
 const onChildRemove = (id: number) => {
   quotes.value = quotes.value.filter((q) => q.id !== id)
 }
+const handleSubmit = () => {
+  console.log('Transforming quote to character:', selectedCharacter.value);
+}
+
 </script>
 
 <template>
   <header>
     <div class="wrapper">
-      <AppTitle msg="The quote fetcher" />
-      <button @click="getQuote">Get new quote</button>
+      <AppTitle msg="The quote fetcher"/>
+      <button @click="getQuote" :class="{'primary': quotes.length === 0}">Get new quote</button>
+      <form
+          v-if="quotes.length > 0"
+          @submit.prevent="handleSubmit"
+      >
+        <h2>Who should say it differently?</h2>
+        <select v-model="selectedCharacter">
+          <option disabled value="">Select a character</option>
+          <option v-for="character in characters" :key="character">{{character}}</option>
+        </select>
+        <button
+            :disabled="selectedCharacter.length === 0"
+            :class="{'primary': selectedCharacter.length > 0}"
+        >Rephrase it</button>
+      </form>
       <p>{{ errorMessage }}</p>
     </div>
   </header>
 
   <main>
-    <QuoteList :quotes="quotes" @removeItem="onChildRemove" />
+    <QuoteList :quotes="quotes" @removeItem="onChildRemove"/>
   </main>
 </template>
 
@@ -53,15 +82,32 @@ button {
   padding: 1rem 2rem;
   border-radius: 8px;
   border: 1px solid var(--color-border);
+}
+
+button.primary {
   background-color: var(--accent-1--a);
 }
 
-button:hover {
+button:hover:not(:disabled) {
   background-color: var(--accent-1--b);
 }
 
-button:active {
+button:active:not(:disabled) {
   background-color: var(--accent-1--c);
+}
+
+select {
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: .2em .6em;
+  margin-top: 10px;
+  background: transparent;
+  transition: background-color .5s;
+
+  font-family: inherit;
+  font-size: 100%;
+  line-height: inherit;
+  color: inherit;
 }
 
 @media (min-width: 1024px) {
