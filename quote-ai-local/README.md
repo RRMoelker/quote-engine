@@ -1,7 +1,12 @@
 # quote-ai-local
 
 Web service that transforms a given quote to a style from another author.
-The service packages requests and forwards them to a LM studio server (started independently) with a pre-downloaded LLM. 
+The service packages requests and forwards them to a LM studio server (started independently) with a pre-downloaded LLM.
+
+# Design decisions
+
+* This only performs minor transformations before and after calling the LLM.
+* For this example there is no linting, testing, etc.
 
 # Install
 

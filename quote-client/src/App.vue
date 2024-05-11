@@ -4,6 +4,7 @@ import QuoteList from './components/QuoteList.vue'
 import {ref} from 'vue'
 import type {QuoteType} from '@/types'
 import {fetchQuote, getInitialQuotes} from '@/api/fetcher'
+import {transformQuote} from "@/api/transformer";
 
 const characters = [
   'Yoda (Star Wars)',
@@ -30,8 +31,11 @@ const getQuote = async () => {
 const onChildRemove = (id: number) => {
   quotes.value = quotes.value.filter((q) => q.id !== id)
 }
-const handleSubmit = () => {
-  console.log('Transforming quote to character:', selectedCharacter.value);
+const handleSubmit = async () => {
+  const targetCharacter = selectedCharacter.value;
+  console.log('Transforming quote to character:', targetCharacter);
+  const quote: QuoteType = await transformQuote(quotes.value[0], targetCharacter)
+  quotes.value.push(quote)
 }
 
 </script>

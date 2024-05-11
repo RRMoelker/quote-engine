@@ -12,6 +12,8 @@
   "license": "UNLICENSED",
   "dependencies": {
     "@lmstudio/sdk": "^0.0.12",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
   },

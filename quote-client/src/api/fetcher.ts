@@ -5,6 +5,8 @@ type RemoteQuote = {
   author: string
 }
 
+const quoteUrl = import.meta.env.VITE_API_QUOTE_URL
+
 let id = 0
 export const getInitialQuotes = () => [
   {
@@ -15,7 +17,6 @@ export const getInitialQuotes = () => [
   }
 ]
 
-const quoteUrl = import.meta.env.VITE_API_BASE_URL
 export const fetchQuote = (): Promise<QuoteType> => {
   console.log(`Fetching from: ${quoteUrl}`)
   return fetch(quoteUrl)
