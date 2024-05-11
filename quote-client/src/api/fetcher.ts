@@ -1,4 +1,5 @@
 import type { QuoteType } from '@/types'
+import { createQuote } from '@/api/quotes'
 
 type RemoteQuote = {
   quote: string
@@ -6,16 +7,6 @@ type RemoteQuote = {
 }
 
 const quoteUrl = import.meta.env.VITE_API_QUOTE_URL
-
-let id = 0
-export const getInitialQuotes = () => [
-  {
-    id: id++,
-    content:
-      "When in doubt, push the button. It's amazing how many things can be solved by just taking action",
-    author: 'Attributed to Robert H. Schuller, actually hallucinated by GPT 3.5'
-  }
-]
 
 export const fetchQuote = (): Promise<QuoteType> => {
   console.log(`Fetching from: ${quoteUrl}`)
@@ -29,10 +20,9 @@ export const fetchQuote = (): Promise<QuoteType> => {
     })
     .then((data: RemoteQuote) => {
       console.log('Data received:', data)
-      return {
-        id: id++,
+      return createQuote({
         content: data.quote,
         author: data.author
-      }
+      })
     })
 }

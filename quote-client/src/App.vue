@@ -1,70 +1,74 @@
 <script setup lang="ts">
 import AppTitle from './components/AppTitle.vue'
 import QuoteList from './components/QuoteList.vue'
-import {ref} from 'vue'
-import type {QuoteType} from '@/types'
-import {fetchQuote, getInitialQuotes} from '@/api/fetcher'
-import {transformQuote} from "@/api/transformer";
-
-const characters = [
-  'Yoda (Star Wars)',
-  'Donald Trump',
-  'Gollum (The Lord of the Rings)',
-  'Hodor (Game of Thrones)',
-  'Minions (Despicable Me)',
-  'Tarzan',
-]
+import { ref } from 'vue'
+import type { QuoteType } from '@/types'
+import { fetchQuote } from '@/api/fetcher'
+import { transformQuote } from '@/api/transformer'
+import { getInitialQuotes } from '@/api/quotes'
+import { characters } from '@/api/characters'
 
 const selectedCharacter = ref('')
 const quotes = ref<QuoteType[]>(getInitialQuotes())
 const errorMessage = ref<string>('')
 
 const getQuote = async () => {
+  let quote: QuoteType
   try {
-    const quote: QuoteType = await fetchQuote()
-    quotes.value[0] = quote
-    quotes.value.length = 1
+    quote = await fetchQuote()
   } catch (error: any) {
     errorMessage.value = error
+    return
+  }
+  // Replace current array with single new item
+  quotes.value[0] = quote
+  quotes.value.length = 1
+}
+const onQuoteRemove = (id: number) => {
+  quotes.value = quotes.value.filter((q) => q.id !== id)
+  if (quotes.value.length > 0) {
+    quotes.value[0].derivative = false // The first quote is the basis for the rest
   }
 }
-const onChildRemove = (id: number) => {
-  quotes.value = quotes.value.filter((q) => q.id !== id)
-}
+
 const handleSubmit = async () => {
-  const targetCharacter = selectedCharacter.value;
-  console.log('Transforming quote to character:', targetCharacter);
-  const quote: QuoteType = await transformQuote(quotes.value[0], targetCharacter)
+  const targetCharacter = selectedCharacter.value
+  console.log('Transforming quote to character:', targetCharacter)
+  let quote: QuoteType
+  try {
+    quote = await transformQuote(quotes.value[0], targetCharacter)
+  } catch (error: any) {
+    errorMessage.value = error
+    return
+  }
   quotes.value.push(quote)
 }
-
 </script>
 
 <template>
   <header>
     <div class="wrapper">
-      <AppTitle msg="The quote fetcher"/>
-      <button @click="getQuote" :class="{'primary': quotes.length === 0}">Get new quote</button>
-      <form
-          v-if="quotes.length > 0"
-          @submit.prevent="handleSubmit"
-      >
+      <AppTitle msg="The quote fetcher" />
+      <button @click="getQuote" :class="{ primary: quotes.length === 0 }">Get new quote</button>
+      <form v-if="quotes.length > 0" @submit.prevent="handleSubmit">
         <h2>Who should say it differently?</h2>
         <select v-model="selectedCharacter">
           <option disabled value="">Select a character</option>
-          <option v-for="character in characters" :key="character">{{character}}</option>
+          <option v-for="character in characters" :key="character">{{ character }}</option>
         </select>
         <button
-            :disabled="selectedCharacter.length === 0"
-            :class="{'primary': selectedCharacter.length > 0}"
-        >Rephrase it</button>
+          :disabled="selectedCharacter.length === 0"
+          :class="{ primary: selectedCharacter.length > 0 }"
+        >
+          Rephrase it
+        </button>
       </form>
       <p>{{ errorMessage }}</p>
     </div>
   </header>
 
   <main>
-    <QuoteList :quotes="quotes" @removeItem="onChildRemove"/>
+    <QuoteList :quotes="quotes" @removeItem="onQuoteRemove" />
   </main>
 </template>
 
@@ -103,10 +107,10 @@ button:active:not(:disabled) {
 select {
   border: 1px solid var(--color-border);
   border-radius: 4px;
-  padding: .2em .6em;
+  padding: 0.2em 0.6em;
   margin-top: 10px;
   background: transparent;
-  transition: background-color .5s;
+  transition: background-color 0.5s;
 
   font-family: inherit;
   font-size: 100%;

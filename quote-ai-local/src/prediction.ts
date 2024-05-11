@@ -14,7 +14,9 @@ export const predictQuoteCharacter = async (quote: string, character: string): P
     const maxPredictedTokens = 100;
     const prediction = model.respond(
         [
-            {role: "system", content: `Change the following quote to a version said by ${character}.`},
+            {role: "system", content:
+                    `Change the following quote to a version said by ${character}. Do not append ${character} to the result and do not add quotation marks.`
+            },
             {role: "user", content: quote},
         ],
         {
