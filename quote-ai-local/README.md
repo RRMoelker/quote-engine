@@ -1,5 +1,8 @@
 # quote-ai-local
 
+Web service that transforms a given quote to a style from another author.
+The service packages requests and forwards them to a LM studio server (started independently) with a pre-downloaded LLM. 
+
 # Install
 
     npm install
@@ -13,6 +16,7 @@ First start the LM studio server
 Then run the code in this project
 
     npm start
+
 
 
 # LM studio, original `lms create` README  
