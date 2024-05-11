@@ -1,18 +1,23 @@
-The project serves as a showcase and personal refresher on fundamental cloud-based AI technologies, Django and VueJS.
+The project serves as a showcase and personal refresher on fundamental AI technologies, Django and VueJS.
+The web app fetches random quotes through the Django backend.
+These quotes can be paraphrased by another character via a NodeJS backend using a local LLM service.
 
 The goal is to:
 
 * Create a simple clean web service
 * Refresh some library knowledge for Django REST framework and VueJS.
-* Deploy a simple custom cloud based AI solution
+* Get some more experience with AI solutions
 
 Possible improvements:
 
-* [] Create AI endpoint
+* [x] Create AI endpoint
 * [] Server Linting, etc
 * [x] CI on github
 * [] Serve client app through Django
+* [] Get characters from Django BE
 * [] Deploy and CD
+* [] quote-ai-local: Lint, test, CI 
+* [] Proper logging instead of `print` and `console` statements
 
 
 # Structure 
