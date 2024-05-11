@@ -1,10 +1,21 @@
+// index.ts
 import { LMStudioClient } from "@lmstudio/sdk";
 
 async function main() {
+  // Create a client to connect to LM Studio, then load a model
   const client = new LMStudioClient();
-  console.log("👾👾 Welcome to my new project! 👾👾");
-  console.log("\nDownloaded models:\n");
-  console.log(await client.system.listDownloadedModels());
-  console.log("\n👉 For more, visit our documentation website at https://lmstudio.ai/docs/welcome\n");
+  const model = await client.llm.load("lmstudio-community/Meta-Llama-3-8B-Instruct-GGUF", {
+    config: { gpuOffload: "max" },
+  });
+
+  // Predict!
+  const prediction = model.respond([
+    { role: "system", content: "You are a helpful AI assistant." },
+    { role: "user", content: "What is the meaning of life?" },
+  ]);
+  for await (const text of prediction) {
+    process.stdout.write(text);
+  }
 }
+
 main();
