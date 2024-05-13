@@ -31,7 +31,7 @@ export const transformQuote = (quote: QuoteType, character: string): Promise<Quo
       console.log('Data received:', data)
       return createQuote({
         content: data.quote,
-        author: `Paraphrased by ${character}`,
+        author: `Paraphrased by AI ${character}`,
         derivative: true
       })
     })
