@@ -5,6 +5,7 @@ from rest_framework import viewsets, permissions
 from rest_framework.decorators import action, permission_classes
 from rest_framework.response import Response
 from ..models import Quote
+from ..serializers import QuoteSerializer
 
 
 def create_quote_object(content: str, author: str):
@@ -28,13 +29,9 @@ def create_quote_response(quote: Quote) -> Response:
 
 
 @permission_classes((permissions.AllowAny,))
-class QuoteViewSet(viewsets.ViewSet):
-    def list(self, request):
-        quotes = ['List view not implemented, try the Extra actions dropdown ^']
-        return Response(quotes)
-
-    def retrieve(self, request, pk=None):
-        return NotImplementedError()
+class QuoteViewSet(viewsets.ModelViewSet):
+    queryset = Quote.objects.all()
+    serializer_class = QuoteSerializer
 
     @action(detail=False, methods=['get'])
     def random_quote(self, request):

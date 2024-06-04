@@ -1,6 +1,6 @@
 from django.contrib.auth.models import Group, User
 from rest_framework import serializers
-from .models import Character
+from .models import Character, Quote
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -21,3 +21,9 @@ class CharacterSerializer(serializers.ModelSerializer):
     class Meta:
         model = Character
         fields = ['id', 'name', 'origin', 'description']
+
+
+class QuoteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Quote
+        fields = ['id', 'author', 'content']
