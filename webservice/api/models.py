@@ -13,3 +13,12 @@ class Character(models.Model):
 
     def __str__(self):
         return self.description
+
+class Quote(models.Model):
+    author = models.CharField(max_length=128, )
+    content = models.TextField()
+
+    def __str__(self):
+        return f'{self.content} - {self.author}'
+
+
